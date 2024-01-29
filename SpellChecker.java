@@ -43,11 +43,11 @@ public class SpellChecker {
 	}
 
 	public static String spellChecker(String word, int threshold, String[] dictionary) {
-		int minThresh = threshold;
+		int minThresh = threshold + 1;
 		String minString = word;
 		for (int i = 0; i < dictionary.length; i++) {
 			int newThresh = levenshtein(word, dictionary[i]);
-			if (newThresh <= minThresh) {
+			if (newThresh < minThresh) {
 				minThresh = newThresh;
 				minString = dictionary[i];
 			}
