@@ -23,7 +23,7 @@ public class SpellChecker {
 		else if (word1.length() == 0)
 			return word2.length();
 		
-		else if (word1.charAt(0) == word2.charAt(0))
+		else if (word1.charAt(0) == word2.charAt(0) || word1.charAt(0) + 32 == word2.charAt(0) || word1.charAt(0) == word2.charAt(0) + 32)
 			return levenshtein(tail(word1), tail(word2));
 		
 		int word1Tail =  levenshtein(tail(word1), word2);
