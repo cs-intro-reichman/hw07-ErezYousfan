@@ -16,6 +16,20 @@ public class SpellChecker {
 		return str.substring(1);
 	}
 
+	public static boolean equalsDisregardCap(char a, char b) {
+		if (a == b)
+			return true;
+			
+		else if (a > 'a' && a < 'z' && b > 'A' && b < 'Z') {
+			return a == (b + 32);
+		}
+
+		else if (a > 'A' && a < 'Z' && b > 'a' && b < 'z')
+			return (a + 32) == b;
+
+		return false;
+	}
+
 	public static int levenshtein(String word1, String word2) {
 		if (word2.length() == 0)
 			return word1.length();
@@ -23,7 +37,7 @@ public class SpellChecker {
 		else if (word1.length() == 0)
 			return word2.length();
 		
-		else if (word1.charAt(0) == word2.charAt(0) || word1.charAt(0) + 32 == word2.charAt(0) || word1.charAt(0) == word2.charAt(0) + 32)
+		else if (equalsDisregardCap(word1.charAt(0), word2.charAt(0)))
 			return levenshtein(tail(word1), tail(word2));
 		
 		int word1Tail =  levenshtein(tail(word1), word2);
